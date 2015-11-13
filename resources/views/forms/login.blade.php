@@ -1,4 +1,4 @@
-@foreach ($errors->all() as $message)
+{{-- @foreach ($errors->all() as $message)
 	{{$message}}
 @endforeach
 {!! Form::open( array('route' => 'handleLogin', 'method' => 'post', 'class' => 'row col s12') ) 		!!}
@@ -26,4 +26,4 @@
 <p>
 	<a href="{{ URL::to('/password/email') }}"> Forgot password?</a>
 		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="{{ URL::route('register') }}"> Want to register?</a>
-</p>
+</p> --}}

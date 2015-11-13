@@ -7,8 +7,12 @@ use Redirect;
 use Request;
 use Validator;
 use Hash;
+use URL;
+use Crypt;
 use App\Setting;
 use App\Depression;
+
+use Illuminate\Database\Eloquent\ModelNotFoundException as ModelNotFoundException;
 
 class DepressionController extends Controller
 {
@@ -27,11 +31,18 @@ class DepressionController extends Controller
 
 	public function handleAdmin( ){
 		$data = Request::only([
-					'password' => 'required',
+					'password',
 					'choice'
 				]);
 
-		dd( $data );
+		$validator = Validator::make( $data, [
+		                    'password'  => 'required',
+		                    'choice'     => 'required'
+		                ]);
+
+		$encryptedPassword = Crypt::encrypt( $data['password'] );
+
+		$this->areYouDepressed( $encryptedPassword, $data['choice'] );
 
 		return Redirect::route('admin');
 	}
@@ -39,12 +50,18 @@ class DepressionController extends Controller
 	public function areYouDepressed( $encryptedPassword, $isDepressed ){
 		$decryptedPassword = Crypt::decrypt($encryptedPassword);
 
-		$storedPassword = Setting::where('name', 'password');
+		try{
 
-		if( Hash::make( $decryptedPassword ) == $storedPassword ){
-			Depression::create( [ 'is_depressed' => $isDepressed ]);
-		} else {
-			abort(404);
+			$storedPassword = Setting::where('name', 'password')->firstOrFail( );
+
+			if( Hash::make( $decryptedPassword ) == $storedPassword ){
+				Depression::create( [ 'is_depressed' => $isDepressed ]);
+			} else {
+				abort(404);
+			}
+		} catch( ModelNotFoundException $e ){
+			echo "Please set a password for admin by adding your password to the .env file and going to " . URL::to('/') . "/password";
+			dd();
 		}
 	}
 }

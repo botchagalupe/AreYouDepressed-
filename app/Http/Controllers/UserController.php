@@ -9,6 +9,8 @@ use Validator;
 use Hash;
 use App\User;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException as ModelNotFoundException;
+
 class UserController extends Controller
 {
 	

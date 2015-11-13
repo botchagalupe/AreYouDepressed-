@@ -25,3 +25,4 @@
 	@yield('extra-head')
 </head>
 <body>
+	<div class="valign-wrapper">

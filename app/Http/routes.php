@@ -12,15 +12,7 @@
 */
 
 Route::get('/', 'UserController@index');
-Route::get('home', ['as' => 'register', 'uses' => 'UserController@index']);
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
 
-Route::get('/register', ['as' => 'register', 'uses' => 'UserController@register']);
-Route::post('/user/store', ['as' => 'user/store', 'uses' => 'UserController@store']);
-
-Route::get('/login', ['as' => 'login', 'uses' => 'UserController@login']);
-Route::post('/user/login', ['as' => 'handleLogin', 'uses' => 'UserController@handleLogin']);
+Route::get('/admin', ['as' => 'admin', 'uses' => 'DepressionController@adminForm']);
+Route::post('/admin/post', ['as' => 'handleAdmin', 'uses' => 'DepressionController@handleAdmin']);

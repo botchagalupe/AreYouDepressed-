@@ -64,4 +64,18 @@ class DepressionController extends Controller
 			dd();
 		}
 	}
+
+	public function setPassword( ){
+		$hashedPassword = Hash::make( env('ADMIN_PASSWORD') );
+
+		try {
+			$passwordSetting = Setting::where('name', 'password')->firstOrFail( );
+			$passwordSetting->setting = $hashedPassword;
+			$passwordSetting->save();
+		} catch ( ModelNotFoundException $e) {
+			Setting::create(['name' => 'password', 'setting' => $hashedPassword]);
+		}
+
+		return Redirect::route('admin');
+	}
 }

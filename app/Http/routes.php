@@ -15,4 +15,4 @@ Route::get('/', 'UserController@index');
 
 
 Route::get('/admin', ['as' => 'admin', 'uses' => 'DepressionController@adminForm']);
-Route::post('/admin/post', ['as' => 'handleAdmin', 'uses' => 'DepressionController@handleAdmin']);
+Route::post('/admin/post', ['as' => 'handleAdmin', 'uses' => 'DepressionController@handleAdmin']);Route::get('/password', ['as' => 'password', 'uses' => 'DepressionController@setPassword']);

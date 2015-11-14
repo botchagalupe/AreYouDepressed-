@@ -51,10 +51,8 @@ class DepressionController extends Controller
 		$decryptedPassword = Crypt::decrypt($encryptedPassword);
 
 		try{
-
 			$storedPassword = Setting::where('name', 'password')->firstOrFail( );
-
-			if( Hash::make( $decryptedPassword ) == $storedPassword ){
+			if( Hash::check( $decryptedPassword, $storedPassword->setting )  ){
 				Depression::create( [ 'is_depressed' => $isDepressed ]);
 			} else {
 				abort(404);
@@ -77,5 +75,16 @@ class DepressionController extends Controller
 		}
 
 		return Redirect::route('admin');
+	}
+
+	public function areTheyDepressed( ){
+		try {
+			$depressionStatus = Depression::first();
+			$depressionStatus = $depressionStatus->is_deppressed;
+		} catch (ModelNotFoundException $e) {
+			$depressionStatus = 'Unknown';
+		}
+
+		return View::make('depression.index')->with('depressionStatus', $depressionStatus);
 	}
 }

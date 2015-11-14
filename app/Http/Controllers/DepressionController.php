@@ -80,7 +80,7 @@ class DepressionController extends Controller
 	public function areTheyDepressed( ){
 		try {
 			$depressionStatus = Depression::first();
-			$depressionStatus = $depressionStatus->is_deppressed;
+			$depressionStatus = $depressionStatus->is_depressed;
 		} catch (ModelNotFoundException $e) {
 			$depressionStatus = 'Unknown';
 		}

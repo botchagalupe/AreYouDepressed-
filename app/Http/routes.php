@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'UserController@index');
+Route::get('/', 'DepressionController@areTheyDepressed');
 
 
 Route::get('/admin', ['as' => 'admin', 'uses' => 'DepressionController@adminForm']);

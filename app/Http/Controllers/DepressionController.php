@@ -177,7 +177,8 @@ class DepressionController extends Controller
 
 		if( $currentHour <= $lowerBound && $currentHour >= $upperBound ){
 			// Do not send emails unless they're outside the set bounds
-			Mail::send('emails.reminder', ["yes" => $yes, "no" => $no], function ($m) use ($email, $name) {
+			$baseUrl = URL::to('/');
+			Mail::send('emails.reminder', ["yes" => $yes, "no" => $no, 'baseUrl' => $baseUrl], function ($m) use ($email, $name) {
 	            $m->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
 
 	            $m->to($email, $name)->subject('Are You Depressed?');

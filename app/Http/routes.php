@@ -18,3 +18,12 @@ Route::get('/admin', ['as' => 'admin', 'uses' => 'DepressionController@adminForm
 Route::post('/admin/post', ['as' => 'handleAdmin', 'uses' => 'DepressionController@handleAdmin']);
 Route::get('/password', ['as' => 'password', 'uses' => 'DepressionController@setPassword']);
 Route::get('/answer/{choice}', ['as' => 'answer', 'uses' => 'DepressionController@handleEmail']);
+
+
+Route::get('/json', function( ){
+	return response()->json(\App\Depression::orderBy('created_at', "DESC")->first());
+});
+
+Route::get('/json/all', function( ){
+	return response()->json(\App\Depression::orderBy('created_at', "DESC")->get());
+});

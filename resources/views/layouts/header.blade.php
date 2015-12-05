@@ -13,14 +13,10 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
 	<link rel="stylesheet" type="text/css" href="{{ URL::to('/') }}/css/app.css">
 	@yield('extra-css')
-	
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
-	<script type="text/javascript" src="{{ URL::to('/') }}/js/app.js"></script>
-	@yield('extra-js')
 
 
 	@yield('extra-head')
 </head>
 <body class="{{ \App\Depression::orderBy('created_at', "DESC")->first()->is_depressed }}">
-	<div class="valign-wrapper">
+	<div id="particles-js"></div>
+		<div class="valign-wrapper" >

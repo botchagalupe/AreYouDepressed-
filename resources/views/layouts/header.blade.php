@@ -17,6 +17,6 @@
 
 	@yield('extra-head')
 </head>
-<body class="{{ \App\Depression::orderBy('created_at', "DESC")->first()->is_depressed }}">
+<body class="{{ $depressionStatus or \App\Depression::orderBy('created_at', "DESC")->first()->is_depressed }}">
 	<div id="particles-js"></div>
 		<div class="valign-wrapper" >

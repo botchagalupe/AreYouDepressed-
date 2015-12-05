@@ -27,3 +27,6 @@ Route::get('/json', function( ){
 Route::get('/json/all', function( ){
 	return response()->json(\App\Depression::orderBy('created_at', "DESC")->get());
 });
+
+Route::get('/yes', ['as' => 'yes', 'uses' => 'DepressionController@viewYes']);
+Route::get('/no', ['as' => 'no', 'uses' => 'DepressionController@viewNo']);

@@ -30,6 +30,14 @@ class DepressionController extends Controller
 		return View::make('admin.index');
 	}
 
+	public function viewYes( ){
+		return View::make('depression.index')->with('depressionStatus', 'yes');
+	}
+
+	public function viewNo( ){
+		return View::make('depression.index')->with('depressionStatus', 'no');
+	}
+
 	public function handleAdmin( ){
 
 		$data = Request::only([

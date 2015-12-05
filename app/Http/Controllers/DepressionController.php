@@ -27,23 +27,72 @@ class DepressionController extends Controller
 |
 */
 	public function adminForm( ){
-		\App\Http\Controllers\DepressionController::sendEmail();
 		return View::make('admin.index');
 	}
 
 	public function handleAdmin( ){
+
 		$data = Request::only([
 					'password',
-					'choice'
+					'choice',
+					'lower_bound',
+					'upper_bound',
+					'name',
+					'email',
+					'settings'
 				]);
 
-		$validator = Validator::make( $data, [
-		                    'password'  => 'required',
-		                    'choice'     => 'required'
-		                ]);
+		if( $data['settings'] != 'being-set'){
+			// If we're just using yes or no
+			$validator = Validator::make( $data, [
+			                    'password'  => 'required',
+			                    'choice'     => 'required'
+			                ]);
 
+	        if( $validator->fails( ) ){
+	        	// If validation fails, redirect back to 
+	        	// registration form with errors
+	            return Redirect::back( )
+	                    ->withErrors( $validator )
+	                    ->withInput( );
+	        }
 
-		$this->areYouDepressed( $data['choice'], $data['password'] );
+			$this->areYouDepressed( $data['choice'], $data['password'] );
+		} else{
+			// If we're only setting settings
+			
+			$validator = Validator::make( $data, [
+			                    'lower_bound'  	=> 'numeric|min:0|max:24',
+			                    'upper_bound'   => 'numeric|min:0|max:24',
+			                    'email' 		=> 'email',
+			                    'password'  => 'required',
+			                ]);
+
+	        if( $validator->fails( ) ){
+	        	// If validation fails, redirect back to 
+	        	// registration form with errors
+	            return Redirect::back( )
+	                    ->withErrors( $validator )
+	                    ->withInput( );
+	        }
+
+	        $name = Setting::where('name', 'name')->first();
+			$email = Setting::where('name', 'email')->first();
+			$email_period_lower_bound = Setting::where('name', 'email_period_lower_bound')->first();
+			$email_period_upper_bound = Setting::where('name', 'email_period_upper_bound')->first();
+
+			$name->setting = $data['name'];
+			$name->save();
+			$email->setting = $data['email'];
+			$email->save();
+			$email_period_lower_bound->setting = $data['lower_bound'];
+			$email_period_lower_bound->save();
+			$email_period_upper_bound->setting = $data['upper_bound'];
+			$email_period_upper_bound->save();
+
+		}
+
+		
 
 		return Redirect::route('admin');
 	}

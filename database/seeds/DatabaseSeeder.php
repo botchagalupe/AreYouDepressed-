@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use App\Setting;
+use App\Depression;
 
 class DatabaseSeeder extends Seeder
 {
@@ -47,6 +48,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'last_email', 
             'setting' => 0
         ]);
+
+        Depression::create(['is_depressed' => 'no']);
 
         Model::reguard();
     }

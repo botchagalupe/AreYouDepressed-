@@ -22,7 +22,7 @@
             <!-- button -->
             <table class="btn-primary" cellpadding="0" cellspacing="0" border="0" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; width: auto !important; Margin: 0 0 10px; padding: 0;"><tr style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
 <td style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 14px; line-height: 1.6em; text-align: center; vertical-align: top; background: #2196F3; margin: 0; padding: 0;" align="center" bgcolor="#348eda" valign="top">
-                  <a href="<?php echo $baseUrl."/answer/".$yes; ?>" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 2; color: #ffffff; display: inline-block; cursor: pointer; font-weight: bold; text-decoration: none; background: #2196F3; margin: 0; padding: 0; border-color: #2196F3; border-style: solid; border-width: 10px 20px;">Yes</a>
+                  <a href="<?php echo env('APP_URL')."/answer/".$yes; ?>" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 2; color: #ffffff; display: inline-block; cursor: pointer; font-weight: bold; text-decoration: none; background: #2196F3; margin: 0; padding: 0; border-color: #2196F3; border-style: solid; border-width: 10px 20px;">Yes</a>
                 </td>
               </tr></table>
 <!-- /button -->
@@ -30,7 +30,7 @@
 <!-- button -->
             <table class="btn-primary" cellpadding="0" cellspacing="0" border="0" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; width: auto !important; Margin: 0 0 10px; padding: 0;"><tr style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
 <td style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 14px; line-height: 1.6em; text-align: center; vertical-align: top; background: #F44336; margin: 0; padding: 0;" align="center" bgcolor="#348eda" valign="top">
-                  <a href="<?php echo $baseUrl."/answer/".$no; ?>" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 2; color: #ffffff; display: inline-block; cursor: pointer; font-weight: bold; text-decoration: none; background: #F44336; margin: 0; padding: 0; border-color: #F44336; border-style: solid; border-width: 10px 20px;">No&nbsp; </a>
+                  <a href="<?php echo env('APP_URL')."/answer/".$no; ?>" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 2; color: #ffffff; display: inline-block; cursor: pointer; font-weight: bold; text-decoration: none; background: #F44336; margin: 0; padding: 0; border-color: #F44336; border-style: solid; border-width: 10px 20px;">No&nbsp; </a>
                 </td>
               </tr></table>
 <!-- /button -->

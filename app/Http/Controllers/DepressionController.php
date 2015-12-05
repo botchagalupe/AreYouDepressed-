@@ -171,6 +171,8 @@ class DepressionController extends Controller
 		$lastEmail->setting = time();
 		$lastEmail->save();
 
+		$lastNumber = Depression::orderBy('created_at', "DESC")->first()->id;
+
 		// Encrypt yes and no so people can't accidentally trigger a choice
 		$yes = Crypt::encrypt( "yes" );
 		$no = Crypt::encrypt( "no" );
@@ -178,10 +180,10 @@ class DepressionController extends Controller
 		if( $currentHour <= $lowerBound && $currentHour >= $upperBound ){
 			// Do not send emails unless they're outside the set bounds
 			$baseUrl = URL::to('/');
-			Mail::send('emails.reminder', ["yes" => $yes, "no" => $no, 'baseUrl' => $baseUrl], function ($m) use ($email, $name) {
+			Mail::send('emails.reminder', ["yes" => $yes, "no" => $no, 'baseUrl' => $baseUrl], function ($m) use ($email, $name, $lastNumber) {
 	            $m->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
 
-	            $m->to($email, $name)->subject('Are You Depressed?');
+	            $m->to($email, $name)->subject('Are You Depressed? ('.($lastNumber+1).')');
 	        });
 		}
 	}

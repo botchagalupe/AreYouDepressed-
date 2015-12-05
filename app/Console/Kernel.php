@@ -26,5 +26,9 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('inspire')
                  ->hourly();
+
+        $schedule->call(function(){
+            \App\Http\Controllers\DepressionController::sendEmail();
+        })->cron('0 0,4,8,12,16,20 * * *');
     }
 }

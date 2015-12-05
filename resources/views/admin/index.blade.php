@@ -12,7 +12,7 @@
 			    <li>{{ $message }}</li>
 			@endforeach
 			<div class="row">
-				<h2 class="col s12 center"> Are you depressed? </h2>
+				<h3 class="col s12 center"> Are you depressed? </h3>
 			</div>
 
 			<div class="row">

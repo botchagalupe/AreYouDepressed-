@@ -9,7 +9,7 @@
 
 
 	$(document).ready(function(){
-		@if( \App\Depression::orderBy('created_at', "DESC")->first()->is_depressed == 'yes' )
+		@if( ($depressionStatus == 'yes') or (\App\Depression::orderBy('created_at', "DESC")->first()->is_depressed == 'yes') )
 			particlesJS.load('particles-js', 'sluggish.json', function() {});
 		@else
 			particlesJS.load('particles-js', 'energetic.json', function() {});

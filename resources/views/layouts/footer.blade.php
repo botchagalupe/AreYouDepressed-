@@ -8,13 +8,14 @@
 	<script type="text/javascript">
 
 
-	$(document).ready(function(){
-		@if( ($depressionStatus == 'yes') or (\App\Depression::orderBy('created_at', "DESC")->first()->is_depressed == 'yes') )
-			particlesJS.load('particles-js', 'sluggish.json', function() {});
-		@else
-			particlesJS.load('particles-js', 'energetic.json', function() {});
-		@endif
-	});
+	<?php $depressionStatus = (!isset($depressionStatus) ? \App\Depression::orderBy('created_at', "DESC")->first()->is_depressed == 'yes' : $depressionStatus ); ?>
+    $(document).ready(function(){
+            @if( ($depressionStatus == 'yes') )
+                    particlesJS.load('particles-js', 'sluggish.json', function() {});
+            @else
+                    particlesJS.load('particles-js', 'energetic.json', function() {});
+            @endif
+    });
 	</script>
 </body>
 </html>
